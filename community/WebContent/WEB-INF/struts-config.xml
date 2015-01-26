@@ -1,0 +1,40 @@
+<!DOCTYPE struts-config PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 1.2//EN" "http://jakarta.apache.org/struts/dtds/struts-config_1_2.dtd">
+<struts-config>
+<form-beans>
+	<form-bean name="memberForm" type="my.member.controller.form.MemberForm" />
+<form-bean name="bbsEditForm" type="my.bbs2.controller.form.BbsEditForm" /></form-beans>
+<global-forwards>
+	<forward name="gb-mem-msg" path="/member/member_msg.jsp" redirect="false" />
+<forward name="gb-bbs-msg" path="/bbs2/bbs_msg.jsp" redirect="false" /></global-forwards>
+	<action-mappings>
+		
+		<action path="/H" forward="/hello.jsp" />
+		<action path="/memo" forward="/test/memo.jsp" />
+		<action path="/ac-memoInput" type="my.memo.MemoInputAction">
+			<forward name="fw-memoMsg" path="/test/memoMsg.jsp" />
+		</action>
+		<action path="/ac-memoList" type="my.memo.MemoListAction">
+			<forward name="fw-memoList" path="/test/memoList.jsp" />
+		</action>
+		<action path="/mem-form" type="org.apache.struts.actions.ForwardAction" parameter="/member/member_write.jsp" />
+		<action path="/mem-write" type="my.member.controller.action.InsertAction" name="memberForm" input="/member/member_write.jsp">
+			<forward name="fw-mem-result" path="/member/member_msg.jsp" />
+		</action>
+		<action path="/mem-list" type="my.member.controller.action.ListAction">
+			<forward name="fw-mem-list" path="/member/member_list.jsp" />
+		</action>
+		<action path="/mem-remove" type="my.member.controller.action.removeAction">
+			
+		</action>
+		<action path="/mem-update-form" type="my.member.controller.action.UpdateFormAction">
+			<forward name="fw-mem-update" path="/member/member_update.jsp" redirect="false" />
+		</action>
+		<action path="/mem-update" type="my.member.controller.action.UpdateAction" name="memberForm" />
+		<action path="/index" parameter="/index.jsp" type="org.apache.struts.actions.ForwardAction" />
+		<action path="/bbs-write" parameter="method" type="my.bbs2.controller.action.BbsAction">
+			<forward name="fw-bbs-write" path="/bbs2/bbs_write.jsp" redirect="false" />
+		</action><action path="/bbs-writeOk" type="my.bbs2.controller.action.BbsWriteOkAction" />
+	<action path="/bbs-list" parameter="method" type="my.bbs2.controller.action.BbsAction"><forward name="fw-bbs-list" path="/bbs2/bbs_list.jsp" redirect="false" /></action><action path="/bbs-content" parameter="method" type="my.bbs2.controller.action.BbsAction"><forward name="fw-bbs-content" path="/bbs2/bbs_content.jsp" redirect="false" /></action><action path="/bbs-replyOk" parameter="method" type="my.bbs2.controller.action.BbsAction" /><action path="/bbs-reply-delOk" parameter="method" type="my.bbs2.controller.action.BbsAction" /><action path="/bbs-delete" parameter="/bbs2/bbs_delete.jsp" type="org.apache.struts.actions.ForwardAction" /><action path="/bbs-deleteOk" parameter="method" type="my.bbs2.controller.action.BbsAction" /><action path="/bbs-rewrite" parameter="method" type="my.bbs2.controller.action.BbsAction"><forward name="fw-bbs-rewrite" path="/bbs2/bbs_rewrite.jsp" redirect="false" /></action><action path="/bbs-rewriteOk" type="my.bbs2.controller.action.BbsRewriteOkAction" /><action path="/bbs-edit" parameter="method" type="my.bbs2.controller.action.BbsAction"><forward name="fw-bbs-edit" path="/bbs2/bbs_edit.jsp" redirect="false" /></action><action path="/bbs-editOk" parameter="method" type="my.bbs2.controller.action.BbsAction" name="bbsEditForm" /><action path="/tiles/main" forward=".layout-main" /><action path="/tiles/menu1" forward=".layout-menu1" /><action path="/tiles/menu2" forward=".layout-menu2" /></action-mappings>
+<controller processorClass="my.member.controller.filter.MyRequestProcessor" />
+<message-resources parameter="guide.resources.application" /><plug-in className="org.apache.struts.tiles.TilesPlugin"><set-property property="definitions-config" value="/WEB-INF/tiles-defs.xml" /><set-property property="definitions-debug" value="2" /><set-property property="definitions-parser-details" value="2" /><set-property property="definitions-parser-validate" value="true" /></plug-in>
+</struts-config>
